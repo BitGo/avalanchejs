@@ -8,6 +8,10 @@ on:
 
 jobs:
   Lint-build-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [18.x,20.x]
     name: Lint, build and test
     runs-on: ubuntu-latest
     steps:
@@ -16,7 +20,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: ${{ matrix.version }}
           cache: yarn
       - name: Install dependencies
         run: yarn install --frozen-lockfile
