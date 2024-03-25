@@ -1,11 +1,11 @@
 import { ripemd160 } from '@noble/hashes/ripemd160';
 import { sha256 } from '@noble/hashes/sha256';
-import * as secp from '@noble/secp256k1';
+import * as secp from '@noble/curves/secp256k1';
 import { Address } from 'micro-eth-signer';
 import { concatBytes, hexToBuffer } from '../utils/buffer';
 
 export function randomPrivateKey() {
-  return secp.utils.randomPrivateKey();
+  return secp.secp256k1.utils.randomPrivateKey();
 }
 
 export function sign(msg: Uint8Array | string, privKey: Uint8Array) {
@@ -13,7 +13,7 @@ export function sign(msg: Uint8Array | string, privKey: Uint8Array) {
 }
 
 export async function signHash(hash: Uint8Array, privKey: Uint8Array) {
-  const sig = await secp.signAsync(hash, privKey);
+  const sig = await secp.secp256k1.sign(hash, privKey);
 
   if (sig.recovery !== undefined) {
     return concatBytes(sig.toCompactRawBytes(), new Uint8Array([sig.recovery]));
@@ -24,16 +24,16 @@ export async function signHash(hash: Uint8Array, privKey: Uint8Array) {
 
 export function recoverPublicKey(hash: Uint8Array | string, sig: Uint8Array) {
   const recoveryBit = sig.slice(-1);
-  const secpSig = secp.Signature.fromCompact(sig.slice(0, -1)).addRecoveryBit(
-    recoveryBit[0],
-  );
+  const secpSig = secp.secp256k1.Signature.fromCompact(
+    sig.slice(0, -1),
+  ).addRecoveryBit(recoveryBit[0]);
   const point = secpSig.recoverPublicKey(hash);
 
   return point.toRawBytes(true);
 }
 
 export function getPublicKey(privKey: Uint8Array) {
-  return secp.getPublicKey(privKey, true);
+  return secp.secp256k1.getPublicKey(privKey, true);
 }
 
 export function verify(
@@ -41,7 +41,7 @@ export function verify(
   hash: Uint8Array | string,
   publicKey: Uint8Array,
 ) {
-  return secp.verify(sig.slice(0, -1), hash, publicKey);
+  return secp.secp256k1.verify(sig.slice(0, -1), hash, publicKey);
 }
 
 export function publicKeyBytesToAddress(publicKey: Uint8Array) {
