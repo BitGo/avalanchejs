@@ -1,5 +1,5 @@
 {
-  "name": "@bitgo/avalabs-avalanchejs",
+  "name": "@bitgo/avalanchejs",
   "version": "4.0.5",
   "description": "Avalanche Platform JS Library",
   "main": "dist/index.cjs",
@@ -84,7 +84,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ava-labs/avalanchejs.git"
+    "url": "git+https://github.com/BitGo/avalanchejs.git"
   },
   "keywords": [
     "Avalanche",
@@ -93,9 +93,9 @@
   ],
   "author": "",
   "bugs": {
-    "url": "https://github.com/ava-labs/avalanchejs/issues"
+    "url": "https://github.com/BitGo/avalanchejs/issues"
   },
-  "homepage": "https://github.com/ava-labs/avalanchejs#readme",
+  "homepage": "https://github.com/BitGo/avalanchejs#readme",
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
