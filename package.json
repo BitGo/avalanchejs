@@ -108,5 +108,8 @@
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown",
     "*.{ts,tsx}": "eslint --fix --max-warnings 0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
