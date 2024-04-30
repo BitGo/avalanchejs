@@ -1,5 +1,5 @@
 {
-  "name": "@bitgo/avalanchejs",
+  "name": "@bitgo-forks/avalanchejs",
   "version": "4.0.5",
   "description": "Avalanche Platform JS Library",
   "main": "dist/index.cjs",
