@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [18.x, 20.x]
+        version: [22.x]
     name: Lint, build and test
     runs-on: ubuntu-latest
     steps:
